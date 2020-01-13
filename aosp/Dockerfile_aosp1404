@@ -1,4 +1,4 @@
-FROM ubuntu:14.04 as aosp1404
+FROM ubuntu:14.04
 USER root
 RUN groupadd -g 1001 tj \
     && useradd -d "/home/aosp" -u 1001 -g 1001 -m -s /bin/bash tj
@@ -7,12 +7,23 @@ RUN apt-get update && apt-get install -y git-core gnupg flex bison gperf build-e
 	zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 \
 	lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev ccache \
 	libgl1-mesa-dev libxml2-utils xsltproc unzip  bc liblz4-tool rsync lzop
-# install java8
-ADD java-8-openjdk-amd64 /usr/lib/jvm/java-8-openjdk-amd64
+
+# install python
 RUN apt-get install -y python
+
 #RUN apt-get clean
+
+# install java8
+ADD java-8-openjdk-amd64.tar.bz2 /usr/lib/jvm/
+RUN cd /usr/lib/jvm/ && ln -sf java-8-openjdk-amd64 java-1.8.0-openjdk-amd64
+
 # install jdk7
-RUN apt-get install -y openjdk-7-jdk
+ADD java-7-openjdk-amd64.tar.bz2 /usr/lib/jvm/
+RUN cd /usr/lib/jvm/ && ln -sf java-7-openjdk-amd64 java-1.7.0-openjdk-amd64
+
+# jdk6 for android 4.4
+ADD jdk1.6.0_43.tar.bz2 /usr/lib/jvm/
+RUN cd /usr/lib/jvm/ && ln -sf jdk1.6.0_43 java-6-sun
 
 # fix 6.0 out/host/linux-x86/bin/jack-admin: line 27: USER: unbound variable
 ENV USER tj

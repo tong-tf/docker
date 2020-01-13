@@ -2,7 +2,7 @@
 
 
 # Dockerfile_aosp1404
-此文件用来生成ubuntu14.04版本的android编译环境， 可编译6.0,7.0,8.0,9.0
+此文件用来生成ubuntu14.04版本的android编译环境， 可编译4.4, 6.0, 7.0,8.0,9.0
 
 ## 普通用户运行镜像
 docker run -it --rm  -v /home/tj/code/:/home/aosp tong/aosp:1404 bash
