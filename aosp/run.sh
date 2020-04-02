@@ -8,13 +8,14 @@ usage()
 }
 
 case $1 in
-	1604)
+	1404)
 		docker build -t tong/aosp:1404 -f Dockerfile_aosp1404 .
 		;;
-	1404)
+	1604)
 		docker build -t tong/aosp:1604 -f Dockerfile_aosp1604 .
 		;;
 	*)
+		usage
 		;;
 esac
 
