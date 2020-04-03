@@ -12,6 +12,10 @@ RUN apt-get install -y openjdk-8-jdk
 RUN apt-get install -y python
 #RUN apt-get clean
 RUN cpan install Switch
+
+#for build android Q
+RUN apt-get install -y python3
+
 ENV USER tj
 WORKDIR /home/aosp
 USER tj
