@@ -16,6 +16,10 @@ RUN cpan install Switch
 #for build android Q
 RUN apt-get install -y python3
 
+# add gawk and gsed for build rk312x linux
+#  awk: line 2: function strtonum never defined
+RUN apt-get install -y sed gawk libssl-dev time wget cpio
+
 ENV USER tj
 WORKDIR /home/aosp
 USER tj
